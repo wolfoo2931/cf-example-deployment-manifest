@@ -5,7 +5,6 @@ system_domain = ENV['SYSTEM_DOMAIN']
 name: cf
 director_uuid: <%= `bosh status --uuid`.strip %>
 
-
 stemcells:
 - os: ubuntu-trusty
   alias: ubuntu-trusty
@@ -18,8 +17,8 @@ update:
   canaries: 1
   max_in_flight: 1
   serial: false
-  canary_watch_time: 30000-600000
-  update_watch_time: 5000-600000
+  canary_watch_time: 30000-60000
+  update_watch_time: 5000-60000
 
 jobs:
 - name: nats
@@ -160,8 +159,9 @@ jobs:
   networks:
   - name: elastic
     static_ips: ['10.244.0.34']
-  - name: public
     default: [gateway, dns]
+  - name: public
+    static_ips: ['10.0.0.4']
   properties:
     ha_proxy:
       ssl_pem: |
@@ -455,7 +455,7 @@ properties:
         lan:
         - 10.0.16.105
     encrypt_keys:
-    - password
+    - Z7X0QvHXABykGPunjd2taA==
     ca_cert: |
       -----BEGIN CERTIFICATE-----
       MIIFBzCCAu+gAwIBAgIBATANBgkqhkiG9w0BAQsFADATMREwDwYDVQQDEwhjb25z
@@ -683,17 +683,35 @@ properties:
     roles:
     - {name: ccadmin, password: password, tag: admin}
     - {name: uaaadmin, password: password, tag: admin}
+
   dea_next:
     advertise_interval_in_seconds: 5
+    allow_host_access: null
+    allow_networks: null
+    default_health_check_timeout: 60
+    deny_networks: null
+    directory_server_protocol: https
+    disk_mb: 8192
+    disk_overcommit_factor: 1
+    evacuation_bail_out_time_in_seconds: 600
     heartbeat_interval_in_seconds: 10
-    memory_mb: 33996
-    ca_cert:
-    client_cert:
-    client_key:
+    instance_bandwidth_limit: null
+    instance_disk_inode_limit: 200000
+    kernel_network_tuning_enabled: false
+    logging_level: debug
+    memory_mb: 12288
+    memory_overcommit_factor: 2
+    mtu: null
+    post_setup_hook: null
+    rlimit_core: 0
+    staging_bandwidth_limit: null
+    staging_disk_inode_limit: 200000
+    staging_disk_limit_mb: 1536
+    staging_memory_limit_mb: 1048
     enable_ssl: false
-    server_cert:
-    server_key:
-  description: Cloud Foundry sponsored by Pivotal
+  description: "anynines Public PaaS - http://www.anynines.com"
+  disk_quota_enabled: false
+
   domain: <%= system_domain %>
   etcd:
     machines: [10.0.16.104]

@@ -9,9 +9,11 @@ networks:
   subnets:
   - range: 10.0.2.0/24
     gateway: 10.0.2.1
+    dns: [8.8.8.8]
     az: z1
   - range: 10.0.3.0/24
     gateway: 10.0.3.1
+    dns: [8.8.8.8]
     az: z2
   - range: 10.0.4.0/24
     gateway: 10.0.4.1
@@ -22,14 +24,17 @@ networks:
   subnets:
   - range: 10.0.16.0/24
     gateway: 10.0.16.1
+    dns: [8.8.8.8]
     static: ['10.0.16.4 - 10.0.16.254']
     az: z1
   - range: 10.0.17.0/24
     gateway: 10.0.17.1
+    dns: [8.8.8.8]
     static: ['10.0.17.4 - 10.0.17.254']
     az: z2
   - range: 10.0.18.0/24
     gateway: 10.0.18.1
+    dns: [8.8.8.8]
     static: ['10.0.18.4 - 10.0.18.254']
     az: z3
 
@@ -38,6 +43,7 @@ networks:
   subnets:
   - range: 10.244.0.0/24
     gateway: 10.244.0.1
+    dns: [8.8.8.8]
     reserved: ['10.244.0.2', '10.244.0.3']
     static: ['10.244.0.34', '10.244.0.35', '10.244.0.36']
     az: z1
@@ -47,6 +53,7 @@ networks:
   subnets:
   - range: 10.0.0.0/24
     gateway: 10.0.0.1
+    dns: [8.8.8.8]
     reserved: ['10.0.0.2', '10.0.0.3']
     static: ['10.0.0.4', '10.0.0.5', '10.0.0.6']
     az: z1
