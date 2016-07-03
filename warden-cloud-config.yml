@@ -1,0 +1,68 @@
+azs:
+- name: z1
+- name: z2
+- name: z3
+
+networks:
+- name: dynamic
+  type: manual
+  subnets:
+  - range: 10.0.2.0/24
+    gateway: 10.0.2.1
+    az: z1
+  - range: 10.0.3.0/24
+    gateway: 10.0.3.1
+    az: z2
+  - range: 10.0.4.0/24
+    gateway: 10.0.4.1
+    az: z3
+
+- name: static
+  type: manual
+  subnets:
+  - range: 10.0.16.0/24
+    gateway: 10.0.16.1
+    static: ['10.0.16.4 - 10.0.16.254']
+    az: z1
+  - range: 10.0.17.0/24
+    gateway: 10.0.17.1
+    static: ['10.0.17.4 - 10.0.17.254']
+    az: z2
+  - range: 10.0.18.0/24
+    gateway: 10.0.18.1
+    static: ['10.0.18.4 - 10.0.18.254']
+    az: z3
+
+- name: elastic
+  type: manual
+  subnets:
+  - range: 10.244.0.0/24
+    gateway: 10.244.0.1
+    reserved: ['10.244.0.2', '10.244.0.3']
+    static: ['10.244.0.34', '10.244.0.35', '10.244.0.36']
+    az: z1
+
+- name: public
+  type: manual
+  subnets:
+  - range: 10.0.0.0/24
+    gateway: 10.0.0.1
+    reserved: ['10.0.0.2', '10.0.0.3']
+    static: ['10.0.0.4', '10.0.0.5', '10.0.0.6']
+    az: z1
+
+vm_types:
+- name: default
+  cloud_properties: { name: random }
+
+disk_types:
+- name: default
+  disk_size: 2048
+
+compilation:
+  network: dynamic
+  reuse_compilation_vms: true
+  workers: 10
+  az: z1
+  cloud_properties:
+    name: random
