@@ -152,7 +152,7 @@ jobs:
 - name: ha_proxy
   instances: 1
   vm_type: default
-  azs: [z1, z2, z3]
+  azs: [z1]
   stemcell: ubuntu-trusty
   templates:
   - {name: haproxy, release: cf}
