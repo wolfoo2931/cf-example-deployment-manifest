@@ -5,6 +5,12 @@ system_domain = ENV['SYSTEM_DOMAIN']
 name: cf
 director_uuid: <%= `bosh status --uuid`.strip %>
 
+
+stemcells:
+- os: ubuntu-trusty
+  alias: ubuntu-trusty
+  version: latest
+
 releases:
 - {name: cf, version: latest}
 
