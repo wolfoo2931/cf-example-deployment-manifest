@@ -1,5 +1,6 @@
 <%
 system_domain = ENV['SYSTEM_DOMAIN']
+cf_admin_pwd = ENV['CF_ADMIN_PWD']
 %>
 ---
 name: cf
@@ -313,7 +314,7 @@ jobs:
       scim:
         userids_enabled: true
         users:
-        - admin|password|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose,routing.router_groups.read
+        - admin|<%= cf_admin_pwd %>|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose,routing.router_groups.read
     uaadb:
       address: 10.0.16.101
       databases:
