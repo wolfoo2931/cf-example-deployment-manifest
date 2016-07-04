@@ -212,7 +212,7 @@ properties:
         require_ssl: true
       cc:
         base_url: https://api.<%= system_domain %>
-        basic_auth_password: internal-password
+        basic_auth_password: password
         basic_auth_username: internal_user
       dropsonde_port: null
       log_level: debug
@@ -307,7 +307,7 @@ properties:
         max_idle_conns_per_host: null
         require_ssl: true
       cc:
-        basic_auth_password: internal-password
+        basic_auth_password: password
         basic_auth_username: internal_user
       dropsonde_port: null
       insecure_docker_registry_list: null
@@ -403,7 +403,7 @@ properties:
         max_idle_conns_per_host: null
         require_ssl: true
       cc:
-        basic_auth_password: internal-password
+        basic_auth_password: password
         basic_auth_username: internal_user
       dropsonde_port: null
       log_level: null
@@ -1151,7 +1151,7 @@ properties:
       nats:
         machines:
         - 10.0.16.103
-        password: nats
+        password: password
         port: 4222
         user: nats
     ssh_proxy:
@@ -1532,27 +1532,13 @@ properties:
     persistent_image_list:
     - /var/vcap/packages/cflinuxfs2/rootfs
   loggregator:
-    dropsonde_incoming_port: null
     etcd:
-      ca_cert: null
-      machines:
-      - 10.244.0.42
-      require_ssl: null
-    tls:
-      ca_cert: null
+      machines: [10.0.16.104]
   metron_agent:
-    buffer_size: null
-    deployment: cf-warden-diego
-    dropsonde_incoming_port: null
-    enable_buffer: null
-    etcd:
-      client_cert: null
-      client_key: null
-    preferred_protocol: null
-    protocols: null
-    tls:
-      client_cert: null
-      client_key: null
+    zone: z1
+    deployment: minimal-aws
+    dropsonde_incoming_port: 3457
   metron_endpoint:
-    shared_secret: loggregator-secret
+    shared_secret: password
+    port: 4443
   syslog_daemon_config: null
